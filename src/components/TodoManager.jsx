@@ -116,10 +116,10 @@ const Todos = ({props: [todos, markUnmarkAllTodos, delAllMarkedTodos]}) => {
         {TodoList.length ? TodoList : NoTodo}
       </div>
       <div className="p-3 flex justify-between space-x-1 md:space-x-4 w-auto md:text-base text-[11px]">
-        { todos.some(todo => todo.completed) &&
+        { (todos.some(todo => todo.completed) && !todos.every(todo => todo.completed)) &&
           <button className="rounded-md shadow-md bg-yellow-600 py-1 px-2" onClick={onClearMarked}>Clear Marked</button>
         }
-        { (todos.length > 1 && !todos.every(todo => todo.completed)) &&
+        { todos.length > 0 &&
           <button className="rounded-md shadow-md bg-red-800 py-1 px-2 text-white" onClick={onClearAll}>Clear All</button>
         }
         { (todos.some(todo => todo.completed) && !todos.every(todo => todo.completed)) &&
